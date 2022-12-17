@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import { Box, Button, Input, InputLabel, Snackbar, Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import validator from 'validator';
 
 import axiosClient from '../../api/axios';
-import login from '../../redux/actions';
 
-function Login() {
+function Register() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [isErrorSnackbarMessage, setIsErrorSnackbarMessage] = useState(false);
   const [showSnackbar, setShowSnackbar] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -23,23 +27,76 @@ function Login() {
     setPassword(e.target.value);
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
   const handleCloseSnackbar = () => {
     setShowSnackbar(false);
   };
 
   const handleSubmit = () => {
+    if (email === '') {
+      setSnackbarMessage('メールアドレス必須');
+      setIsErrorSnackbarMessage(true);
+      setShowSnackbar(true);
+      return;
+    }
+
+    if (!validator.isEmail(email)) {
+      setSnackbarMessage('メールの形式が間違い');
+      setIsErrorSnackbarMessage(true);
+      setShowSnackbar(true);
+      return;
+    }
+
+    if (name === '') {
+      setSnackbarMessage('名前必須');
+      setIsErrorSnackbarMessage(true);
+      setShowSnackbar(true);
+      return;
+    }
+
+    if (password === '') {
+      setSnackbarMessage('パスワード必須');
+      setIsErrorSnackbarMessage(true);
+      setShowSnackbar(true);
+      return;
+    }
+
+    if (password.length < 8) {
+      setSnackbarMessage('パスワード8文字以上必要');
+      setIsErrorSnackbarMessage(true);
+      setShowSnackbar(true);
+      return;
+    }
+
+    if (confirmPassword === '') {
+      setSnackbarMessage('パスワード認証必須');
+      setIsErrorSnackbarMessage(true);
+      setShowSnackbar(true);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setSnackbarMessage('パスワードの確認が正しくない');
+      setIsErrorSnackbarMessage(true);
+      setShowSnackbar(true);
+      return;
+    }
+
     axiosClient
-      .post('/login', {
+      .post('/auth/register', {
+        name,
         email,
         password,
       })
-      .then(async (res) => {
-        setSnackbarMessage('ログイン成功');
+      .then(async () => {
+        setSnackbarMessage('レジスター成功');
         setIsErrorSnackbarMessage(false);
         setShowSnackbar(true);
-        dispatch(login(res.data.token, res.data.user.id, res.data.user.role));
         setTimeout(() => {
-          navigate('/');
+          navigate('/login');
         }, 1000);
       })
       .catch((err) => {
@@ -102,12 +159,12 @@ function Login() {
                         fontSize: '30px',
                         fontWeight: 'bold',
                       }}
-                      htmlFor="電子メイル"
+                      htmlFor="email"
                     >
                       電子メイル
                     </InputLabel>
                     <Input
-                      type="text"
+                      type="email"
                       placeholder="電子メイルを入力してください"
                       required
                       sx={{ width: '300px' }}
@@ -119,7 +176,7 @@ function Login() {
                   <Box sx={{ paddingBottom: '30px' }}>
                     <InputLabel
                       sx={{ fontSize: '30px', fontWeight: 'bold' }}
-                      htmlFor="名前"
+                      htmlFor="name"
                     >
                       名前
                     </InputLabel>
@@ -128,15 +185,15 @@ function Login() {
                       placeholder="名前を入力してください"
                       required
                       sx={{ width: '300px' }}
-                      id="email"
-                      onChange={handleEmailChange}
-                      name="email"
+                      id="name"
+                      onChange={handleNameChange}
+                      name="name"
                     />
                   </Box>
                   <Box sx={{ paddingBottom: '30px' }}>
                     <InputLabel
                       sx={{ fontSize: '30px', fontWeight: 'bold' }}
-                      htmlFor="パスワード"
+                      htmlFor="password"
                     >
                       パスワード
                     </InputLabel>
@@ -153,18 +210,18 @@ function Login() {
                   <Box sx={{ paddingBottom: '20px' }}>
                     <InputLabel
                       sx={{ fontSize: '30px', fontWeight: 'bold' }}
-                      htmlFor="パスワードを確認"
+                      htmlFor="confirm-password"
                     >
                       パスワードを確認
                     </InputLabel>
                     <Input
-                      type="text"
+                      type="password"
                       placeholder="パスワードを確認を入力してください"
                       required
                       sx={{ width: '300px' }}
-                      id="email"
-                      onChange={handleEmailChange}
-                      name="email"
+                      id="confirm-password"
+                      onChange={handleConfirmPasswordChange}
+                      name="confirm-password"
                     />
                   </Box>
                   <Box sx={{ textAlign: 'center' }}>
@@ -203,4 +260,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

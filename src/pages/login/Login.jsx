@@ -11,13 +11,14 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import validator from 'validator';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 import axiosClient from '../../api/axios';
 import login from '../../redux/actions';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [isErrorSnackbarMessage, setIsErrorSnackbarMessage] = useState(false);
@@ -25,8 +26,8 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -38,18 +39,46 @@ function Login() {
   };
 
   const handleSubmit = () => {
+    if (email === '') {
+      setSnackbarMessage('メールアドレス必須');
+      setIsErrorSnackbarMessage(true);
+      setShowSnackbar(true);
+      return;
+    }
+
+    if (!validator.isEmail(email)) {
+      setSnackbarMessage('メールの形式が間違い');
+      setIsErrorSnackbarMessage(true);
+      setShowSnackbar(true);
+      return;
+    }
+
+    if (password === '') {
+      setSnackbarMessage('パスワード必須');
+      setIsErrorSnackbarMessage(true);
+      setShowSnackbar(true);
+      return;
+    }
+
+    if (password.length < 8) {
+      setSnackbarMessage('パスワード8文字以上必要');
+      setIsErrorSnackbarMessage(true);
+      setShowSnackbar(true);
+      return;
+    }
     axiosClient
-      .post('/login', {
-        username,
+      .post('/auth/login', {
+        email,
         password,
       })
       .then(async (res) => {
-        setSnackbarMessage('Login success');
+        setSnackbarMessage('ログイン成功');
         setIsErrorSnackbarMessage(false);
         setShowSnackbar(true);
-        dispatch(login(res.data.token, res.data.user.id, res.data.user.role));
+        axiosClient.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
+        dispatch(login(res.data.token, res.data.id));
         setTimeout(() => {
-          navigate('/');
+          window.location.reload();
         }, 1000);
       })
       .catch((err) => {
@@ -118,9 +147,9 @@ function Login() {
                       placeholder="電子メイルを入力してください"
                       required
                       sx={{ width: '300px' }}
-                      id="username"
-                      onChange={handleUsernameChange}
-                      name="username"
+                      id="email"
+                      onChange={handleEmailChange}
+                      name="email"
                     />
                   </Box>
                   <Box sx={{ paddingY: '15px' }}>

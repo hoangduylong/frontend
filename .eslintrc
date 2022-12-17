@@ -21,6 +21,8 @@
     "import/no-import-module-exports": "off",
     "import/no-relative-packages": "off",
     "react-hooks/exhaustive-deps": "warn",
-    "no-param-reassign": 0
+    "no-param-reassign": 0,
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": 0
   }
 }

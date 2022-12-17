@@ -1,29 +1,29 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
 
+import routes from './routes/routes';
 import Login from './pages/login/Login';
-import Homepage from './pages/homepage/Homepage';
 import Register from './pages/register/Register';
-import NotFound from './pages/not-found/NotFound';
-import Profile from './pages/profile/Profile';
 
 const App = () => {
-  const token = useSelector((state) => {
-    return state.user ? state.user.token : '';
-  });
+  const store = localStorage.getItem('store');
 
   return (
     <Router>
       <Routes>
-        {token ? (
-          ''
+        {store ? (
+          routes.map((route) => (
+            <Route path={route.path} element={route.element} />
+          ))
         ) : (
           <>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/" element={<Homepage />} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
           </>
         )}
       </Routes>

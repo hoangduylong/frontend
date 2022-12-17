@@ -1,10 +1,9 @@
-const login = (token, userId, userRole) => {
+const login = (token, id) => {
   return {
     type: 'login',
     payload: {
       token,
-      userId,
-      userRole,
+      id,
     },
   };
 };
