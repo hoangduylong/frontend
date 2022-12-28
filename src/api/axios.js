@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: 'https://sunflower-itss.herokuapp.com/',
+  baseURL: 'https://pear-codfish-kit.cyclic.app/',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
