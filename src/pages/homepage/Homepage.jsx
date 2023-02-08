@@ -71,7 +71,7 @@ function Homepage() {
     { id: 'start_time', label: 'Thời hạn', minWidth: 100 },
     { id: 'status', label: 'Trạng thái', minWidth: 50 },
   ];
-
+  let data = null;
   const handleFilterStartTimeChange = (value) => {
     setFilterStartTime(value);
   };
@@ -125,6 +125,34 @@ function Homepage() {
     axiosClient
       .get('/tasks')
       .then((res) => {
+        data = [...res.data]
+        data.map((item, index) => {
+          if(item.priority === '低い') {
+          item.priority = 'Thấp'
+        }
+
+        if(item.priority === '中') {
+          item.priority = 'Trung bình'
+        }
+
+        if(item.priority === '高い') {
+          item.priority = 'Cao'
+        }
+
+        if(item.status === 'トド') {
+          item.status = 'Bắt đầu'
+        }
+        if(item.status === '進行中') {
+          item.status = 'Đang thực hiện'
+        }
+        if(item.status === 'ペンディング') {
+          item.status = 'Tạm dừng'
+        }
+        if(item.status === '完了') {
+          item.status = 'Hoàn thành'
+        }
+        return item;
+        })
         setRows(res.data);
       })
       .catch((err) => {
