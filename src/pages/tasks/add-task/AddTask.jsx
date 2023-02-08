@@ -17,6 +17,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useNavigate } from 'react-router-dom';
 
 import axiosClient from '../../../api/axios';
+// import { color } from '@mui/system';
 
 function UpdateTask() {
   const [startTime, setStartTime] = useState(null);
@@ -26,6 +27,7 @@ function UpdateTask() {
   const [priority, setPriority] = useState('');
   const [progress, setProgress] = useState('');
   const [status, setStatus] = useState('');
+  const [emptyField, setEmptyField] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [isErrorSnackbarMessage, setIsErrorSnackbarMessage] = useState(false);
   const [showSnackbar, setShowSnackbar] = useState(false);
@@ -65,6 +67,9 @@ function UpdateTask() {
   };
 
   const handleSubmit = () => {
+    if(!title || !description || !content || !startTime || !priority || !progress || !status) {
+      setEmptyField(true)
+    }
     axiosClient
       .post('/tasks', {
         title,
@@ -77,8 +82,9 @@ function UpdateTask() {
         user_id: store.id,
       })
       .then(() => {
-        setSnackbarMessage('タスク追加成功');
+        setSnackbarMessage('Thêm mới công việc thành công');
         setIsErrorSnackbarMessage(false);
+        setEmptyField(false);
         setShowSnackbar(true);
         setTimeout(() => {
           navigate('/');
@@ -99,50 +105,87 @@ function UpdateTask() {
           color: '#DD5371',
         }}
       >
-        追加
+        Thêm mới
       </Box>
       <Box>
         <Box sx={{ width: '80%', margin: '30px auto' }}>
           <InputLabel
-            sx={{ fontSize: '30px', fontWeight: 'bold' }}
-            htmlFor="タイトル"
+            sx={{ fontSize: '30px', fontWeight: 'bold'}}
+            htmlFor="Tiêu đề"
           >
-            タイトル
+            Tiêu đề
           </InputLabel>
-          <Input
-            type="text"
-            placeholder="タイトルを入力してください"
-            required
-            sx={{ width: '100%' }}
-            id="title"
-            name="title"
-            onChange={handleTitleChange}
-          />
+          {emptyField && !title ?
+            <Input
+              type="text"
+              placeholder="Vui lòng nhập tiêu đề"
+              required
+              sx={{ width: '100%', color: 'red'}}
+              id="title"
+              name="title"
+              onChange={handleTitleChange}
+            />
+            :
+            <Input
+              type="text"
+              placeholder="Vui lòng nhập tiêu đề"
+              required
+              sx={{ width: '100%'}}
+              id="title"
+              name="title"
+              onChange={handleTitleChange}
+            />
+            }
         </Box>
         <Box sx={{ width: '80%', margin: '30px auto' }}>
           <InputLabel
             sx={{ fontSize: '30px', fontWeight: 'bold' }}
-            htmlFor="デスクリプション"
+            htmlFor="Mô tả"
           >
-            デスクリプション
+            Mô tả
           </InputLabel>
+          {emptyField && !description ?
+          <TextField
+            id="description"
+            name="description"
+            multiline
+            rows={2}
+            inputProps={{style: {color:'red'}}}
+            sx={{ width: '100%' }}
+            placeholder="Vui lòng nhập mô tả"
+            onChange={handleDescriptionChange}
+          />
+          :
           <TextField
             id="description"
             name="description"
             multiline
             rows={2}
             sx={{ width: '100%' }}
-            placeholder="デスクリプションを入力してください"
+            placeholder="Vui lòng nhập mô tả"
             onChange={handleDescriptionChange}
           />
+          }
         </Box>
         <Box sx={{ width: '80%', margin: '30px auto' }}>
           <InputLabel
             sx={{ fontSize: '30px', fontWeight: 'bold' }}
-            htmlFor="内容"
+            htmlFor="Nội dung"
           >
-            内容
+            Nội dung
           </InputLabel>
+          {emptyField && !content ?
+          <TextField
+            id="content"
+            name="content"
+            onChange={handleContentChange}
+            multiline
+            rows={6}
+            inputProps={{style: {color:'red'}}}
+            sx={{ width: '100%' }}
+            placeholder="Vui lòng nhập nội dung"
+          />
+          :
           <TextField
             id="content"
             name="content"
@@ -150,8 +193,9 @@ function UpdateTask() {
             multiline
             rows={6}
             sx={{ width: '100%' }}
-            placeholder="内容を入力してください"
+            placeholder="Vui lòng nhập nội dung"
           />
+          }
         </Box>
         <Box
           sx={{
@@ -163,29 +207,30 @@ function UpdateTask() {
         >
           <Box sx={{ width: '20%' }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">優先</InputLabel>
+              <InputLabel id="demo-simple-select-label">Độ ưu tiên</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 name="demo-simple-select"
-                label="優先"
+                label="Độ ưu tiên"
                 onChange={handlePriorityChange}
               >
-                <MenuItem value="低い">低い</MenuItem>
-                <MenuItem value="中">中</MenuItem>
-                <MenuItem value="高い">高い</MenuItem>
+                <MenuItem value="低い">Thấp</MenuItem>
+                <MenuItem value="中">Trung bình</MenuItem>
+                <MenuItem value="高い">Cao</MenuItem>
               </Select>
+              {emptyField && !priority && <span style={{color: 'red'}}>Vui lòng nhập trường này</span>}
             </FormControl>
           </Box>
           <Box sx={{ width: '20%' }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">進捗（％）</InputLabel>
+              <InputLabel id="demo-simple-select-label">Tiến độ（％）</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 name="demo-simple-select"
                 onChange={handleProgressChange}
-                label="進捗（％）"
+                label="Tiến độ（％）"
               >
                 <MenuItem value="0">0</MenuItem>
                 <MenuItem value="20">20</MenuItem>
@@ -193,6 +238,7 @@ function UpdateTask() {
                 <MenuItem value="80">80</MenuItem>
                 <MenuItem value="100">100</MenuItem>
               </Select>
+              {emptyField && !progress && <span style={{color: 'red'}}>Vui lòng nhập trường này</span>}
             </FormControl>
           </Box>
           <Box sx={{ width: '20%' }}>
@@ -201,7 +247,7 @@ function UpdateTask() {
                 <DateTimePicker
                   value={startTime}
                   onChange={handleStartTimeChange}
-                  label="開始"
+                  label="Thời hạn"
                   ampm={false}
                   inputFormat="DD/MM/YYYY HH:mm"
                   renderInput={(props) => (
@@ -216,23 +262,25 @@ function UpdateTask() {
                   )}
                 />
               </LocalizationProvider>
+              {emptyField && !startTime && <span style={{color: 'red'}}>Vui lòng nhập trường này</span>}
             </FormControl>
           </Box>
           <Box sx={{ width: '20%' }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">状態</InputLabel>
+              <InputLabel id="demo-simple-select-label">Trạng thái</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 name="demo-simple-select"
-                label="状態"
+                label="Trạng thái"
                 onChange={handleStatusChange}
               >
-                <MenuItem value="トド">トド</MenuItem>
-                <MenuItem value="進行中">進行中</MenuItem>
-                <MenuItem value="ペンディング">ペンディング</MenuItem>
-                <MenuItem value="完了">完了</MenuItem>
+                <MenuItem value="トド">Bắt đầu</MenuItem>
+                <MenuItem value="進行中">Đang thực hiện</MenuItem>
+                <MenuItem value="ペンディング">Tạm dừng</MenuItem>
+                <MenuItem value="完了">Hoàn thành</MenuItem>
               </Select>
+              {emptyField && !status && <span style={{color: 'red'}}>Vui lòng nhập trường này</span>}
             </FormControl>
           </Box>
         </Box>
@@ -254,7 +302,7 @@ function UpdateTask() {
               fontWeight: 'bold',
             }}
           >
-            追加
+            Thêm mới
           </Box>
         </Button>
       </Box>

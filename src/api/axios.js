@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: 'https://pear-codfish-kit.cyclic.app/',
+  baseURL: 'http://localhost:8080',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',

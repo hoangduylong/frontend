@@ -89,7 +89,7 @@ function TaskDetail() {
         user_id: store.id,
       })
       .then(() => {
-        setSnackbarMessage('タスクアップデート成功');
+        setSnackbarMessage('Cập nhật công việc thành công');
         setIsErrorSnackbarMessage(false);
         setShowSnackbar(true);
         setTimeout(() => {
@@ -125,7 +125,7 @@ function TaskDetail() {
           position: 'relative',
         }}
       >
-        {!isEditMode ? 'ディテール' : 'アップデート'}
+        {!isEditMode ? 'Thông tin chi tiết' : 'Chỉnh sửa công việc'}
         <Button
           sx={{ position: 'absolute', right: '0' }}
           onClick={handleClickOpen}
@@ -137,14 +137,14 @@ function TaskDetail() {
         <Box sx={{ width: '80%', margin: '30px auto' }}>
           <InputLabel
             sx={{ fontSize: '30px', fontWeight: 'bold' }}
-            htmlFor="タイトル"
+            htmlFor="Tiêu đề"
           >
-            タイトル
+            Tiêu đề
           </InputLabel>
           {!isEditMode ? (
             <Input
               type="text"
-              placeholder="タイトルを入力してください"
+              placeholder="Vui lòng nhập tiêu đề"
               required
               sx={{ width: '100%' }}
               id="title"
@@ -155,7 +155,7 @@ function TaskDetail() {
           ) : (
             <Input
               type="text"
-              placeholder="タイトルを入力してください"
+              placeholder="Vui lòng nhập tiêu đề"
               required
               sx={{ width: '100%' }}
               id="title"
@@ -168,9 +168,9 @@ function TaskDetail() {
         <Box sx={{ width: '80%', margin: '30px auto' }}>
           <InputLabel
             sx={{ fontSize: '30px', fontWeight: 'bold' }}
-            htmlFor="デスクリプション"
+            htmlFor="Mô tả"
           >
-            デスクリプション
+            Mô tả
           </InputLabel>
           {!isEditMode ? (
             <TextField
@@ -179,7 +179,7 @@ function TaskDetail() {
               multiline
               rows={2}
               sx={{ width: '100%' }}
-              placeholder="デスクリプションを入力してください"
+              placeholder="Vui lòng nhập mô tả"
               disabled
               value={task.description}
             />
@@ -190,7 +190,7 @@ function TaskDetail() {
               multiline
               rows={2}
               sx={{ width: '100%' }}
-              placeholder="デスクリプションを入力してください"
+              placeholder="Vui lòng nhập mô tả"
               value={task.description}
               onChange={handleTaskChange}
             />
@@ -199,9 +199,9 @@ function TaskDetail() {
         <Box sx={{ width: '80%', margin: '30px auto' }}>
           <InputLabel
             sx={{ fontSize: '30px', fontWeight: 'bold' }}
-            htmlFor="内容"
+            htmlFor="Nội dung"
           >
-            内容
+            Nội dung
           </InputLabel>
           {!isEditMode ? (
             <TextField
@@ -210,7 +210,7 @@ function TaskDetail() {
               multiline
               rows={6}
               sx={{ width: '100%' }}
-              placeholder="内容を入力してください"
+              placeholder="Vui lòng nhập nội dung"
               disabled
               value={task.content}
             />
@@ -221,7 +221,7 @@ function TaskDetail() {
               multiline
               rows={6}
               sx={{ width: '100%' }}
-              placeholder="内容を入力してください"
+              placeholder="Vui lòng nhập nội dung"
               value={task.content}
               onChange={handleTaskChange}
             />
@@ -237,45 +237,45 @@ function TaskDetail() {
         >
           <Box sx={{ width: '20%' }}>
             <FormControl fullWidth>
-              <InputLabel id="priority-select-label">優先</InputLabel>
+              <InputLabel id="priority-select-label">Độ ưu tiên</InputLabel>
               {!isEditMode ? (
                 <Select
                   labelId="priority-select-label"
                   id="priority"
                   name="priority"
-                  label="優先"
+                  label="Độ ưu tiên"
                   value={task.priority ? task.priority : ''}
                   disabled
                 >
-                  <MenuItem value="低い">低い</MenuItem>
-                  <MenuItem value="中">中</MenuItem>
-                  <MenuItem value="高い">高い</MenuItem>
+                  <MenuItem value="低い">Thấp</MenuItem>
+                  <MenuItem value="中">Trung bình</MenuItem>
+                  <MenuItem value="高い">Cao</MenuItem>
                 </Select>
               ) : (
                 <Select
                   labelId="priority-select-label"
                   id="priority"
                   name="priority"
-                  label="優先"
+                  label="Độ ưu tiên"
                   value={task.priority ? task.priority : ''}
                   onChange={handleTaskChange}
                 >
-                  <MenuItem value="低い">低い</MenuItem>
-                  <MenuItem value="中">中</MenuItem>
-                  <MenuItem value="高い">高い</MenuItem>
+                  <MenuItem value="低い">Thấp</MenuItem>
+                  <MenuItem value="中">Trung bình</MenuItem>
+                  <MenuItem value="高い">Cao</MenuItem>
                 </Select>
               )}
             </FormControl>
           </Box>
           <Box sx={{ width: '20%' }}>
             <FormControl fullWidth>
-              <InputLabel id="progress-select-label">進捗（％）</InputLabel>
+              <InputLabel id="progress-select-label">Tiến độ（％）</InputLabel>
               {!isEditMode ? (
                 <Select
                   labelId="progress-select-label"
                   id="progress"
                   name="progress"
-                  label="進捗（％）"
+                  label="Tiến độ（％）"
                   disabled
                   value={task.progress ? task.progress : ''}
                 >
@@ -290,7 +290,7 @@ function TaskDetail() {
                   labelId="progress-select-label"
                   id="progress"
                   name="progress"
-                  label="進捗（％）"
+                  label="Tiến độ（％）"
                   value={task.progress ? task.progress : ''}
                   onChange={handleTaskChange}
                 >
@@ -309,7 +309,7 @@ function TaskDetail() {
                 {!isEditMode ? (
                   <DateTimePicker
                     value={task.start_time ? task.start_time : null}
-                    label="開始"
+                    label="Thời hạn"
                     ampm={false}
                     inputFormat="DD/MM/YYYY HH:mm"
                     onChange={handleTaskChange}
@@ -326,7 +326,7 @@ function TaskDetail() {
                   />
                 ) : (
                   <DateTimePicker
-                    label="開始"
+                    label="Thời hạn"
                     ampm={false}
                     inputFormat="DD/MM/YYYY HH:mm"
                     value={task.start_time ? task.start_time : null}
@@ -347,34 +347,34 @@ function TaskDetail() {
           </Box>
           <Box sx={{ width: '20%' }}>
             <FormControl fullWidth>
-              <InputLabel id="status-select-label">状態</InputLabel>
+              <InputLabel id="status-select-label">Trạng thái</InputLabel>
               {!isEditMode ? (
                 <Select
                   labelId="status-select-label"
                   id="status"
                   name="status"
-                  label="状態"
+                  label="Trạng thái"
                   disabled
                   value={task.status ? task.status : ''}
                 >
-                  <MenuItem value="トド">トド</MenuItem>
-                  <MenuItem value="進行中">進行中</MenuItem>
-                  <MenuItem value="ペンディング">ペンディング</MenuItem>
-                  <MenuItem value="完了">完了</MenuItem>
+                  <MenuItem value="トド">Bắt đầu</MenuItem>
+                  <MenuItem value="進行中">Đang thực hiện</MenuItem>
+                  <MenuItem value="ペンディング">Tạm dừng</MenuItem>
+                  <MenuItem value="完了">Hoàn thành</MenuItem>
                 </Select>
               ) : (
                 <Select
                   labelId="status-select-label"
                   id="status"
                   name="status"
-                  label="状態"
+                  label="Trạng thái"
                   value={task.status ? task.status : ''}
                   onChange={handleTaskChange}
                 >
-                  <MenuItem value="トド">トド</MenuItem>
-                  <MenuItem value="進行中">進行中</MenuItem>
-                  <MenuItem value="ペンディング">ペンディング</MenuItem>
-                  <MenuItem value="完了">完了</MenuItem>
+                  <MenuItem value="トド">Bắt đầu</MenuItem>
+                  <MenuItem value="進行中">Đang thực hiện</MenuItem>
+                  <MenuItem value="ペンディング">Tạm dừng</MenuItem>
+                  <MenuItem value="完了">Hoàn thành</MenuItem>
                 </Select>
               )}
             </FormControl>
@@ -395,7 +395,7 @@ function TaskDetail() {
           }}
           onClick={!isEditMode ? handleChangeEditMode : handleSubmit}
         >
-          {!isEditMode ? '編集' : '保存'}
+          {!isEditMode ? 'Chỉnh sửa' : 'Cập nhật'}
         </Button>
       </Box>
       <Snackbar

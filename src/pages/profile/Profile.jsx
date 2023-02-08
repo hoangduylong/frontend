@@ -122,7 +122,7 @@ function Profile() {
           fontWeight: 'bold',
         }}
       >
-        プロフィール
+        Thông tin cá nhân
       </Box>
       <form
         style={{
@@ -158,7 +158,7 @@ function Profile() {
                         sx={{ fontSize: '20px', fontWeight: 'bold' }}
                         htmlFor="name"
                       >
-                        名前
+                        Họ và tên
                       </InputLabel>
                       <Input
                         type="text"
@@ -174,7 +174,7 @@ function Profile() {
                         sx={{ fontSize: '20px', fontWeight: 'bold' }}
                         htmlFor="email"
                       >
-                        メールアドレス
+                        Email
                       </InputLabel>
                       <Input
                         type="text"
@@ -215,7 +215,7 @@ function Profile() {
                               sx={{ fontSize: '20px', fontWeight: 'bold' }}
                               htmlFor="current-password"
                             >
-                              現在のパスワード
+                              Nhập mật khẩu hiện tại
                             </InputLabel>
                             <Input
                               type="password"
@@ -232,12 +232,12 @@ function Profile() {
                               sx={{ fontSize: '20px', fontWeight: 'bold' }}
                               htmlFor="new-password"
                             >
-                              新しいパスワード
+                              Mật khẩu mới
                             </InputLabel>
                             <Input
                               type="password"
                               required
-                              placeholder="新しいパスワードを入力してください"
+                              placeholder="Nhập mật khẩu mới"
                               sx={{ width: '300px' }}
                               id="new-password"
                               name="new_password"
@@ -249,12 +249,12 @@ function Profile() {
                               sx={{ fontSize: '20px', fontWeight: 'bold' }}
                               htmlFor="confirm-password"
                             >
-                              確認パスワード
+                              Nhập lại mật khẩu
                             </InputLabel>
                             <Input
                               type="password"
                               required
-                              placeholder="確認パスワードを入力してください"
+                              placeholder="Nhập lại mật khẩu"
                               sx={{ width: '300px' }}
                               id="confirm-password"
                               name="new_password_confirmation"
@@ -270,7 +270,7 @@ function Profile() {
                               variant="outlined"
                               onClick={handleUpdatePassword}
                             >
-                              アップデート
+                              Cập nhật
                             </Button>
                           </Box>
                         </Box>

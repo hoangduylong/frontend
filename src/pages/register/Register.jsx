@@ -37,35 +37,35 @@ function Register() {
 
   const handleSubmit = () => {
     if (email === '') {
-      setSnackbarMessage('メールアドレス必須');
+      setSnackbarMessage('Vui lòng nhập trường này trường này');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
     }
 
     if (!validator.isEmail(email)) {
-      setSnackbarMessage('メールの形式が間違い');
+      setSnackbarMessage('Email không chính xác');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
     }
 
     if (name === '') {
-      setSnackbarMessage('名前必須');
+      setSnackbarMessage('Họ và tên必須');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
     }
 
     if (password === '') {
-      setSnackbarMessage('パスワード必須');
+      setSnackbarMessage('Vui lòng nhập trường này trường này');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
     }
 
     if (password.length < 8) {
-      setSnackbarMessage('パスワード8文字以上必要');
+      setSnackbarMessage('Mật khẩu tối thiểu 8 ký tự');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
@@ -178,11 +178,11 @@ function Register() {
                       sx={{ fontSize: '30px', fontWeight: 'bold' }}
                       htmlFor="name"
                     >
-                      名前
+                      Họ và tên
                     </InputLabel>
                     <Input
                       type="text"
-                      placeholder="名前を入力してください"
+                      placeholder="Họ và tênを入力してください"
                       required
                       sx={{ width: '300px' }}
                       id="name"

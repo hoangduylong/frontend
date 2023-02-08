@@ -23,7 +23,7 @@ function ButtonAddTask() {
         onClick={handleRedirectAddTask}
       >
         <AddCircleIcon sx={{ paddingX: '5px', color: '#DD5371' }} />
-        <Box sx={{ fontSize: '15px' }}>追加</Box>
+        <Box sx={{ fontSize: '15px' }}>Thêm mới</Box>
       </Button>
     </Box>
   );

@@ -40,28 +40,28 @@ function Login() {
 
   const handleSubmit = () => {
     if (email === '') {
-      setSnackbarMessage('メールアドレス必須');
+      setSnackbarMessage('Vui lòng nhập trường này trường này');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
     }
 
     if (!validator.isEmail(email)) {
-      setSnackbarMessage('メールの形式が間違い');
+      setSnackbarMessage('Email không chính xác');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
     }
 
     if (password === '') {
-      setSnackbarMessage('パスワード必須');
+      setSnackbarMessage('Vui lòng nhập trường này trường này');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
     }
 
     if (password.length < 8) {
-      setSnackbarMessage('パスワード8文字以上必要');
+      setSnackbarMessage('Mật khẩu tối thiểu 8 ký tự');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
@@ -72,7 +72,7 @@ function Login() {
         password,
       })
       .then(async (res) => {
-        setSnackbarMessage('ログイン成功');
+        setSnackbarMessage('Đăng nhập thành công');
         setIsErrorSnackbarMessage(false);
         setShowSnackbar(true);
         axiosClient.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
@@ -132,19 +132,19 @@ function Login() {
                       textAlign: 'center',
                     }}
                   >
-                    ログイン
+                    Đăng nhập
                   </Box>
                   <Box sx={{ paddingY: '50px' }}>
                     <InputLabel
                       sx={{ fontSize: '30px', fontWeight: 'bold' }}
-                      htmlFor="電子メイル
+                      htmlFor="Email
                       "
                     >
-                      電子メイル
+                      Email
                     </InputLabel>
                     <Input
                       type="text"
-                      placeholder="電子メイルを入力してください"
+                      placeholder="Vui lòng nhập trường này trường này"
                       required
                       sx={{ width: '300px' }}
                       id="email"
@@ -155,14 +155,14 @@ function Login() {
                   <Box sx={{ paddingY: '15px' }}>
                     <InputLabel
                       sx={{ fontSize: '30px', fontWeight: 'bold' }}
-                      htmlFor="パスワード"
+                      htmlFor="Mật khẩu"
                     >
-                      パスワード
+                      Mật khẩu
                     </InputLabel>
                     <Input
                       type="password"
                       required
-                      placeholder="パスワードを入力してください"
+                      placeholder="Vui lòng nhập trường này trường này"
                       sx={{ width: '300px' }}
                       id="password"
                       onChange={handlePasswordChange}
@@ -194,7 +194,7 @@ function Login() {
                         htmlFor="remember"
                         sx={{ cursor: 'pointer', fontSize: '12px' }}
                       >
-                        次回から表示しない
+                        Nhớ mật khẩu
                       </InputLabel>
                     </Box>
                     <Box>
@@ -207,7 +207,7 @@ function Login() {
                           fontSize: '13px',
                         }}
                       >
-                        パスワードを忘れた場合
+                        Quên mật khẩu
                       </Link>
                     </Box>
                   </Box>
@@ -217,7 +217,7 @@ function Login() {
                       sx={{ marginTop: '20px', backgroundColor: '#DD5371' }}
                       onClick={handleSubmit}
                     >
-                      ログイン
+                      Đăng nhập
                     </Button>
                   </Box>
                 </Box>
@@ -241,7 +241,7 @@ function Login() {
                     color: '#DD5371',
                   }}
                 >
-                  アカウントを作成
+                  Tạo tài khoản mới
                   <ArrowRightAltIcon
                     style={{ position: 'relative', top: '6px' }}
                   />
