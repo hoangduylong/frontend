@@ -153,7 +153,7 @@ function Homepage() {
         }
         return item;
         })
-        setRows(res.data);
+        setRows(res.data.filter(task => !task.deleted));
       })
       .catch((err) => {
         console.log(err);
