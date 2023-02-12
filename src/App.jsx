@@ -8,6 +8,7 @@ import {
 import routes from './routes/routes';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
+import TaskPieChart from './pages/chart/TaskPieChart';
 
 const App = () => {
   const store = localStorage.getItem('store');
@@ -23,6 +24,7 @@ const App = () => {
           <>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/chart" element={<TaskPieChart />} />
             <Route path="*" element={<Navigate to="/login" replace />} />
           </>
         )}

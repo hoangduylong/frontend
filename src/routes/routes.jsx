@@ -7,6 +7,7 @@ import AddTask from '../pages/tasks/add-task/AddTask';
 import TaskDetail from '../pages/tasks/task-detail/TaskDetail';
 import Layout from '../layouts/main-layout/Layout';
 import NotFound from '../pages/not-found/NotFound';
+import TaskPieChart from '../pages/chart/TaskPieChart';
 
 const routes = [
   {
@@ -48,6 +49,14 @@ const routes = [
         <TaskDetail />
       </Layout>
     ),
+  },
+  {
+    path: '/chart',
+    element: (
+      <Layout>
+        <TaskPieChart />
+      </Layout>
+    )
   },
   {
     path: '*',
