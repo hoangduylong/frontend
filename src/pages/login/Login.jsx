@@ -54,7 +54,7 @@ function Login() {
     }
 
     if (password === '') {
-      setSnackbarMessage('Vui lòng nhập trường này trường này');
+      setSnackbarMessage('Vui lòng nhập trường này');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
@@ -144,7 +144,7 @@ function Login() {
                     </InputLabel>
                     <Input
                       type="text"
-                      placeholder="Vui lòng nhập trường này trường này"
+                      placeholder="Vui lòng nhập email"
                       required
                       sx={{ width: '300px' }}
                       id="email"
@@ -162,7 +162,7 @@ function Login() {
                     <Input
                       type="password"
                       required
-                      placeholder="Vui lòng nhập trường này trường này"
+                      placeholder="Vui lòng nhập mật khẩu"
                       sx={{ width: '300px' }}
                       id="password"
                       onChange={handlePasswordChange}

@@ -424,17 +424,17 @@ function TaskDetail() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          タスクをデリートする？
+          Bạn chắc chắn muốn xóa task này chứ ?
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            実施した後で元に戻ることができない。
+            Bạn không thể hoàn tác sau khi xóa.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>キャンセル</Button>
+          <Button onClick={handleClose}>Hủy</Button>
           <Button onClick={handleDeleteTask} autoFocus>
-            確認
+            Xác nhận
           </Button>
         </DialogActions>
       </Dialog>

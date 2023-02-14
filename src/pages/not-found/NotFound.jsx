@@ -34,7 +34,7 @@ function NotFound() {
             color: '#DD5371',
           }}
         >
-          ページが存在しません
+          Trang không tồn tại
         </Box>
       </Box>
     </Box>
