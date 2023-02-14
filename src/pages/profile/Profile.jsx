@@ -47,7 +47,7 @@ function Profile() {
     axiosClient
       .put(`/auth/profile`, { ...user, id: id })
       .then(() => {
-        setSnackbarMessage('編集成功');
+        setSnackbarMessage('Chỉnh sửa thành công!');
         setIsErrorSnackbarMessage(false);
         setShowSnackbar(true);
         setTimeout(() => {
@@ -65,7 +65,7 @@ function Profile() {
     axiosClient
       .post(`auth/update-password`, { ...passwordObject, id: id })
       .then(() => {
-        setSnackbarMessage('パスワードアップデート');
+        setSnackbarMessage('Cập nhật mật khẩu');
         setIsErrorSnackbarMessage(false);
         setShowSnackbar(true);
         setTimeout(() => {
@@ -81,7 +81,7 @@ function Profile() {
   };
 
   const handleLogout = () => {
-    setSnackbarMessage('ログアウト');
+    setSnackbarMessage('Đăng xuất');
     setIsErrorSnackbarMessage(false);
     setShowSnackbar(true);
     setTimeout(() => {
@@ -220,7 +220,7 @@ function Profile() {
                             <Input
                               type="password"
                               required
-                              placeholder="現在のパスワードを入力してください"
+                              placeholder="Vui lòng nhập mật khẩu hiện tại"
                               sx={{ width: '300px' }}
                               id="current-password"
                               name="current_password"

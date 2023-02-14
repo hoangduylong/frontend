@@ -58,7 +58,7 @@ function Register() {
     }
 
     if (password === '') {
-      setSnackbarMessage('Vui lòng nhập trường này trường này');
+      setSnackbarMessage('Vui lòng nhập trường này');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
@@ -79,7 +79,7 @@ function Register() {
     }
 
     if (password !== confirmPassword) {
-      setSnackbarMessage('パスワードの確認が正しくない');
+      setSnackbarMessage('Mật khẩu không chính xác!');
       setIsErrorSnackbarMessage(true);
       setShowSnackbar(true);
       return;
@@ -92,7 +92,7 @@ function Register() {
         password,
       })
       .then(async () => {
-        setSnackbarMessage('レジスター成功');
+        setSnackbarMessage('Đăng ký thành công!');
         setIsErrorSnackbarMessage(false);
         setShowSnackbar(true);
         setTimeout(() => {
@@ -151,7 +151,7 @@ function Register() {
                       paddingBottom: '50px',
                     }}
                   >
-                    レジスター
+                    Đăng ký
                   </Box>
                   <Box sx={{ paddingBottom: '30px' }}>
                     <InputLabel
@@ -161,11 +161,11 @@ function Register() {
                       }}
                       htmlFor="email"
                     >
-                      電子メイル
+                      Email
                     </InputLabel>
                     <Input
                       type="email"
-                      placeholder="電子メイルを入力してください"
+                      placeholder="Vui lòng nhập email"
                       required
                       sx={{ width: '300px' }}
                       id="email"
@@ -182,7 +182,7 @@ function Register() {
                     </InputLabel>
                     <Input
                       type="text"
-                      placeholder="Họ và tênを入力してください"
+                      placeholder="Vui lòng nhập họ tên"
                       required
                       sx={{ width: '300px' }}
                       id="name"
@@ -195,12 +195,12 @@ function Register() {
                       sx={{ fontSize: '30px', fontWeight: 'bold' }}
                       htmlFor="password"
                     >
-                      パスワード
+                      Mật khẩu
                     </InputLabel>
                     <Input
                       type="password"
                       required
-                      placeholder="パスワードを入力してください"
+                      placeholder="Vui lòng nhập mật khẩu"
                       sx={{ width: '300px' }}
                       id="password"
                       onChange={handlePasswordChange}
@@ -212,11 +212,11 @@ function Register() {
                       sx={{ fontSize: '30px', fontWeight: 'bold' }}
                       htmlFor="confirm-password"
                     >
-                      パスワードを確認
+                      Xác nhận mật khẩu
                     </InputLabel>
                     <Input
                       type="password"
-                      placeholder="パスワードを確認を入力してください"
+                      placeholder="Vui lòng nhập lại mật khẩu"
                       required
                       sx={{ width: '300px' }}
                       id="confirm-password"
@@ -230,7 +230,7 @@ function Register() {
                       sx={{ marginTop: '20px', backgroundColor: '#DD5371' }}
                       onClick={handleSubmit}
                     >
-                      レジスター
+                      Đăng ký
                     </Button>
                   </Box>
                 </Box>
