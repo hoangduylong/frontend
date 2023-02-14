@@ -8,6 +8,7 @@ import TaskDetail from '../pages/tasks/task-detail/TaskDetail';
 import Layout from '../layouts/main-layout/Layout';
 import NotFound from '../pages/not-found/NotFound';
 import TaskPieChart from '../pages/chart/TaskPieChart';
+import DeletedTask from '../pages/deleted/DeletedTasks';
 
 const routes = [
   {
@@ -51,10 +52,18 @@ const routes = [
     ),
   },
   {
-    path: '/chart',
+    path: '/charts',
     element: (
       <Layout>
         <TaskPieChart />
+      </Layout>
+    )
+  },
+  {
+    path: '/deletedTasks',
+    element: (
+      <Layout>
+        <DeletedTask />
       </Layout>
     )
   },

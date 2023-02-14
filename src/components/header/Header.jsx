@@ -2,6 +2,7 @@ import { Box, Button } from '@mui/material';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -20,6 +21,10 @@ function Header() {
     navigate('/profile');
   };
 
+  const handleRedirectDeletedTasks = () => {
+    navigate('/deletedTasks');
+  }
+
   return (
     <Box
       sx={{
@@ -30,6 +35,7 @@ function Header() {
         justifyContent: 'space-between',
         boxShadow: '5px 5px 5px grey',
         cursor: 'pointer',
+        width: '100%'
       }}
     >
       <Box
@@ -53,11 +59,10 @@ function Header() {
       <Box
         sx={{
           display: 'flex',
-          width: '100px',
           justifyContent: 'space-between',
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', marginX: '10px' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', marginRight: '10px' }}>
           <Button
             variant="outlined"
             sx={{
@@ -69,7 +74,7 @@ function Header() {
             <BarChartIcon sx={{ fontSize: '30px', color: '#183A4A' }} />
           </Button>
         </Box>
-        <Box>
+        <Box sx={{ marginRight: '10px' }}>
           <Button
             variant="outlined"
             sx={{
@@ -79,6 +84,18 @@ function Header() {
             onClick={handleRedirectProfile}
           >
             <AccountCircleIcon sx={{ fontSize: '30px', color: '#183A4A' }} />
+          </Button>
+        </Box>
+        <Box>
+          <Button
+            variant="outlined"
+            sx={{
+              color: '#183A4A',
+              backgroundColor: 'white',
+            }}
+            onClick={handleRedirectDeletedTasks}
+          >
+            <DeleteSweepIcon sx={{ fontSize: '30px', color: '#183A4A' }} />
           </Button>
         </Box>
       </Box>

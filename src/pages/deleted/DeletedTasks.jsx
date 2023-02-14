@@ -51,7 +51,7 @@ const priorities = ['Thấp', 'Trung bình', 'Cao'];
 const statuses = ['Bắt đầu', 'Đang tiến hành', 'Đang tạm dừng', 'Hoàn thành'];
 const progresses = ['0', '20', '50', '80', '100'];
 
-function DeletedTask() {
+function Homepage() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const theme = useTheme();
@@ -65,7 +65,7 @@ function DeletedTask() {
   const navigate = useNavigate();
   const columns = [
     { id: 'title', label: 'Tiêu đề', minWidth: 100 },
-    { id: 'description', label: 'Mô tả', minWidth: 500 },
+    { id: 'description', label: 'Mô tả', minWidth: 300 },
     { id: 'priority', label: 'Độ ưu tiên', minWidth: 50 },
     { id: 'progress', label: 'Tiến độ（％）', minWidth: 50 },
     { id: 'start_time', label: 'Thời hạn', minWidth: 100 },
@@ -177,7 +177,7 @@ function DeletedTask() {
         <ButtonAddTask />
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box>
-            <FormControl sx={{ m: 1, width: 230 }}>
+            <FormControl sx={{ m: 1, width: 120 }}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
                   value={filterStartTime}
@@ -200,7 +200,7 @@ function DeletedTask() {
             </FormControl>
           </Box>
           <Box>
-            <FormControl sx={{ m: 1, width: 230 }}>
+            <FormControl sx={{ m: 1, width: 150 }}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
                   value={filterEndTime}
@@ -224,7 +224,7 @@ function DeletedTask() {
             </FormControl>
           </Box>
           <Box>
-            <FormControl sx={{ m: 1, width: 100 }} size="small">
+            <FormControl sx={{ m: 1, width: 120 }} size="small">
               <InputLabel id="filter-task-name-label">Độ ưu tiên</InputLabel>
               <Select
                 labelId="filter-task-name-label"
@@ -247,7 +247,7 @@ function DeletedTask() {
             </FormControl>
           </Box>
           <Box>
-            <FormControl sx={{ m: 1, width: 120 }} size="small">
+            <FormControl sx={{ m: 1, width: 130 }} size="small">
               <InputLabel id="filter-task-value-label">Tiến độ（％）</InputLabel>
               <Select
                 labelId="filter-task-value-label"
@@ -270,7 +270,7 @@ function DeletedTask() {
             </FormControl>
           </Box>
           <Box>
-            <FormControl sx={{ m: 1, width: 100 }} size="small">
+            <FormControl sx={{ m: 1, width: 120 }} size="small">
               <InputLabel id="filter-task-value-label">Trạng thái</InputLabel>
               <Select
                 labelId="filter-task-value-label"
@@ -293,7 +293,7 @@ function DeletedTask() {
             </FormControl>
           </Box>
           <Box>
-            <FormControl sx={{ m: 1, width: 200 }} size="small">
+            <FormControl sx={{ m: 1, width: 100 }} size="small">
               <TextField
                 id="outlined-basic"
                 label="Tìm kiếm"
@@ -471,4 +471,4 @@ function DeletedTask() {
   );
 }
 
-export default DeletedTask;
+export default Homepage;

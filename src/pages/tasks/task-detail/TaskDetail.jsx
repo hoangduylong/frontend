@@ -62,7 +62,17 @@ function TaskDetail() {
   const handleDeleteTask = () => {
     handleClose();
     axiosClient
-      .delete(`/tasks/${params.id}`)
+      .put(`/tasks/${params.id}`, {
+        title: task.title,
+        description: task.description,
+        content: task.content,
+        start_time: task.start_time,
+        priority: task.priority,
+        progress: task.progress,
+        status: task.status,
+        deleted: true,
+        user_id: store.id,
+      })
       .then(() => {
         setSnackbarMessage('タスクアップデート成功');
         setIsErrorSnackbarMessage(false);
