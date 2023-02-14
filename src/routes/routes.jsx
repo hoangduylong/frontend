@@ -51,7 +51,7 @@ const routes = [
     ),
   },
   {
-    path: '/chart',
+    path: '/charts',
     element: (
       <Layout>
         <TaskPieChart />
