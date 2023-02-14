@@ -9,8 +9,17 @@ const ChartStyled = styled.div`
   position: relative;
 
   .children {
+    padding-top: 32px;
     width: 500px;
     margin: 0 auto;
+    position: relative;
+
+    span {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 10px;
+    }
   }
 `
 
@@ -87,12 +96,11 @@ const TaskPieChart = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'right',
+        position: 'bottom',
       },
       title: {
         display: true,
-        text: "hello",
-        position: "top"
+        text: 'hello',
       },
     },
   };
@@ -117,7 +125,8 @@ const TaskPieChart = () => {
 
   return <ChartStyled> 
     <div className='children'>
-      <Pie data={dataSetting} options={options} />
+      <span>Biểu đồ</span>
+      <Pie options={options} data={dataSetting} />
     </div>
   </ChartStyled>
 }
