@@ -74,7 +74,7 @@ function TaskDetail() {
         user_id: store.id,
       })
       .then(() => {
-        setSnackbarMessage('タスクアップデート成功');
+        setSnackbarMessage('Cập nhật task thành công');
         setIsErrorSnackbarMessage(false);
         setShowSnackbar(true);
         setTimeout(() => {
@@ -257,9 +257,9 @@ function TaskDetail() {
                   value={task.priority ? task.priority : ''}
                   disabled
                 >
-                  <MenuItem value="低い">Thấp</MenuItem>
-                  <MenuItem value="中">Trung bình</MenuItem>
-                  <MenuItem value="高い">Cao</MenuItem>
+                  <MenuItem value="Thấp">Thấp</MenuItem>
+                  <MenuItem value="Trung bình">Trung bình</MenuItem>
+                  <MenuItem value="Cao">Cao</MenuItem>
                 </Select>
               ) : (
                 <Select
@@ -270,9 +270,9 @@ function TaskDetail() {
                   value={task.priority ? task.priority : ''}
                   onChange={handleTaskChange}
                 >
-                  <MenuItem value="低い">Thấp</MenuItem>
-                  <MenuItem value="中">Trung bình</MenuItem>
-                  <MenuItem value="高い">Cao</MenuItem>
+                  <MenuItem value="Thấp">Thấp</MenuItem>
+                  <MenuItem value="Trung bình">Trung bình</MenuItem>
+                  <MenuItem value="Cao">Cao</MenuItem>
                 </Select>
               )}
             </FormControl>
@@ -367,10 +367,10 @@ function TaskDetail() {
                   disabled
                   value={task.status ? task.status : ''}
                 >
-                  <MenuItem value="トド">Bắt đầu</MenuItem>
-                  <MenuItem value="進行中">Đang thực hiện</MenuItem>
-                  <MenuItem value="ペンディング">Tạm dừng</MenuItem>
-                  <MenuItem value="完了">Hoàn thành</MenuItem>
+                  <MenuItem value="Bắt đầu">Bắt đầu</MenuItem>
+                  <MenuItem value="Đang thực hiện">Đang thực hiện</MenuItem>
+                  <MenuItem value="Tạm dừng">Tạm dừng</MenuItem>
+                  <MenuItem value="Hoàn thành">Hoàn thành</MenuItem>
                 </Select>
               ) : (
                 <Select
@@ -381,10 +381,10 @@ function TaskDetail() {
                   value={task.status ? task.status : ''}
                   onChange={handleTaskChange}
                 >
-                  <MenuItem value="トド">Bắt đầu</MenuItem>
-                  <MenuItem value="進行中">Đang thực hiện</MenuItem>
-                  <MenuItem value="ペンディング">Tạm dừng</MenuItem>
-                  <MenuItem value="完了">Hoàn thành</MenuItem>
+                  <MenuItem value="Bắt đầu">Bắt đầu</MenuItem>
+                  <MenuItem value="Đang thực hiện">Đang thực hiện</MenuItem>
+                  <MenuItem value="Tạm dừng">Tạm dừng</MenuItem>
+                  <MenuItem value="Hoàn thành">Hoàn thành</MenuItem>
                 </Select>
               )}
             </FormControl>

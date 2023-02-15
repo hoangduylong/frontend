@@ -48,7 +48,7 @@ function getStyles(name, type, theme) {
 }
 
 const priorities = ['Thấp', 'Trung bình', 'Cao'];
-const statuses = ['Bắt đầu', 'Đang tiến hành', 'Đang tạm dừng', 'Hoàn thành'];
+const statuses = ['Bắt đầu', 'Đang thực hiện', 'Tạm dừng', 'Hoàn thành'];
 const progresses = ['0', '20', '50', '80', '100'];
 
 function Homepage() {
@@ -174,7 +174,7 @@ function Homepage() {
           alignItems: 'center',
         }}
       >
-        <ButtonAddTask />
+        {/* <ButtonAddTask /> */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box>
             <FormControl sx={{ m: 1, width: 120 }}>
@@ -182,7 +182,7 @@ function Homepage() {
                 <DateTimePicker
                   value={filterStartTime}
                   onChange={handleFilterStartTimeChange}
-                  label="Thời hạn"
+                  label="Bắt đầu"
                   ampm={false}
                   inputFormat="DD/MM/YYYY HH:mm"
                   renderInput={(props) => (
@@ -205,7 +205,7 @@ function Homepage() {
                 <DateTimePicker
                   value={filterEndTime}
                   onChange={handleFilterEndTimeChange}
-                  label="Hoàn thành"
+                  label="Kết thúc"
                   ampm={false}
                   inputFormat="DD/MM/YYYY HH:mm"
                   renderInput={(props) => (
@@ -376,7 +376,7 @@ function Homepage() {
 
                   if (
                     filterProgress !== '' &&
-                    row.progress !== filterProgress
+                    Number(row.progress) !== Number(filterProgress)
                   ) {
                     return false;
                   }

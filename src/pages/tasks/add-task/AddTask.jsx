@@ -215,9 +215,9 @@ function UpdateTask() {
                 label="Độ ưu tiên"
                 onChange={handlePriorityChange}
               >
-                <MenuItem value="低い">Thấp</MenuItem>
-                <MenuItem value="中">Trung bình</MenuItem>
-                <MenuItem value="高い">Cao</MenuItem>
+                <MenuItem value="Thấp">Thấp</MenuItem>
+                <MenuItem value="Trung bình">Trung bình</MenuItem>
+                <MenuItem value="Cao">Cao</MenuItem>
               </Select>
               {emptyField && !priority && <span style={{color: 'red'}}>Vui lòng nhập trường này</span>}
             </FormControl>
@@ -275,10 +275,10 @@ function UpdateTask() {
                 label="Trạng thái"
                 onChange={handleStatusChange}
               >
-                <MenuItem value="トド">Bắt đầu</MenuItem>
-                <MenuItem value="進行中">Đang thực hiện</MenuItem>
-                <MenuItem value="ペンディング">Tạm dừng</MenuItem>
-                <MenuItem value="完了">Hoàn thành</MenuItem>
+                <MenuItem value="Bắt đầu">Bắt đầu</MenuItem>
+                <MenuItem value="Đang thực hiện">Đang thực hiện</MenuItem>
+                <MenuItem value="Tạm dừng">Tạm dừng</MenuItem>
+                <MenuItem value="Hoàn thành">Hoàn thành</MenuItem>
               </Select>
               {emptyField && !status && <span style={{color: 'red'}}>Vui lòng nhập trường này</span>}
             </FormControl>
