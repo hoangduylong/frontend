@@ -30,7 +30,7 @@ const TaskPieChart = () => {
   useEffect(() => {
     axiosClient.get("/tasks")
     .then(res => {
-      setTaskList(res.data);
+      setTaskList(res.data.filter(task => !task.deleted));
     })
   }, [])
 
